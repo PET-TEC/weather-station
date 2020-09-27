@@ -6,7 +6,7 @@ export class Station {
     name: string;
     userId: string;
     createdAt: Date;
-    updateAt: Date;
+    updatedAt: Date;
     lat: number;
     lon: number;
     acuracy: number;

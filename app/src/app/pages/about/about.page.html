@@ -10,5 +10,35 @@
 </ion-header>
 
 <ion-content>
+  <ion-text><p style="padding-left: 20px;">O PET (Programa de Educação Tutorial) é desenvolvido em diversas universidades pelo Brasil
+  e tem como intuito desenvolver pesquisas, projetos acadêmicos e projetos sociais, contribuindo 
+  sempre visando gerar conhecimento e interesse pela ciência.</p></ion-text>
 
+  <ion-text><p style="padding-left: 20px;">Esse projeto foi desenvolvido pelo PET-TEC (Tecnologias em Eletrônica e Computação), da Universidade Federal de Itajubá (UNIFEI - Itajubá). Conheça nossas páginas.</p></ion-text>
+  
+  <ion-item color='primary' style='padding-left: 30px; padding-right: 30px; padding-top: 7px;' (click)="site()">
+    <ion-label style='text-align: center;'>Conheça nosso site</ion-label>
+    <ion-icon horizontal="end" name="code-outline"></ion-icon>
+    <ion-ripple-effect></ion-ripple-effect> 
+  </ion-item>
+  <ion-item color='danger' style='padding-left: 30px; padding-right: 30px; padding-top: 7px;' (click)="instagram()">
+    <ion-label style='text-align: center;'>Instragram</ion-label> 
+    <ion-icon horizontal="end" name="logo-instagram"></ion-icon>
+    <ion-ripple-effect></ion-ripple-effect> 
+  </ion-item>
+  <ion-item color='secondary' style='padding-left: 30px; padding-right: 30px; padding-top: 7px;' (click)="linkedin()">
+    <ion-label style='text-align: center;'>LinkedIn</ion-label> 
+    <ion-icon horizontal="end" name="logo-linkedin"></ion-icon>
+    <ion-ripple-effect></ion-ripple-effect> 
+  </ion-item>
+  <ion-item color='dark' style='padding-left: 30px; padding-right: 30px; padding-top: 7px;' (click)="github()">
+    <ion-label style='text-align: center;'>GitHub</ion-label>
+    <ion-icon horizontal="end" name="logo-github"></ion-icon> 
+    <ion-ripple-effect></ion-ripple-effect> 
+  </ion-item>
+  <ion-item color='tertiary' style='padding-left: 30px; padding-right: 30px; padding-top: 7px;' (click)="unifei()">
+    <ion-label style='text-align: center;'>Site UNIFEI</ion-label>
+    <ion-icon horizontal="end" name="flash-outline"></ion-icon> 
+    <ion-ripple-effect></ion-ripple-effect> 
+  </ion-item>
 </ion-content>

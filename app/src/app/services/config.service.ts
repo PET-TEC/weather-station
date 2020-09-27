@@ -9,14 +9,14 @@ import { throwError } from 'rxjs';
 export class Config {
 
     err: any = {};
-    url = '';
+    url = 'http://192.168.1.114:3004/';
+    userId: number;
 
 
     constructor(protected http: HttpClient) { }
 
     getDefaultHeader() {
         let headers = new HttpHeaders();
-        headers = headers.append('', '');
         headers = headers.append('Content-Type', 'application/json');
         return headers;
     }
@@ -25,7 +25,7 @@ export class Config {
         console.log('ERR from handleErrors(): ' + error);
         this.err = error;
         if (this.err.status === 0) {
-            return throwError('Error');
+            return throwError(this.err.error.message);
         } else if (error.status === 400) {
             return throwError(this.err.error.message);
         }

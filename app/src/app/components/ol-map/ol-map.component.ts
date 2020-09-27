@@ -30,7 +30,7 @@ export class OlMapComponent implements OnInit, AfterViewInit {
   @Input() width: string | number = DEFAULT_WIDTH;
   @Input() height: string | number = DEFAULT_HEIGHT;
 
-  map: Map;
+  public map: Map;
 
   private mapElement: HTMLElement;
   constructor(
@@ -40,8 +40,8 @@ export class OlMapComponent implements OnInit, AfterViewInit {
     this.mapElement = this.elementRef.nativeElement.querySelector('#map');
     this.setSize();
   }
-  ngAfterViewInit() {
-    this.map = new Map({
+  async ngAfterViewInit() {
+    this.map = await new Map({
       target: 'map',
       layers: [
         new TileLayer({
@@ -54,7 +54,7 @@ export class OlMapComponent implements OnInit, AfterViewInit {
         center: Proj.fromLonLat([this.lon, this.lat]),
         zoom: this.zoom
       }),
-      controls: defaultControls().extend([])
+      controls: defaultControls().extend([]),
     });
   }
 
@@ -74,3 +74,5 @@ function coerceCssPixelValue(value: any): string {
   }
   return cssUnitsPattern.test(value) ? value : `${value}px`;
 }
+
+

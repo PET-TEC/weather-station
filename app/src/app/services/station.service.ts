@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Config } from './config.service';
 
 @Injectable({
@@ -14,18 +14,10 @@ export class StationService {
   ) { }
 
   getStationById(id) {
-    return this.http.get(this.config.url + `station/${id}`, {
-      headers: this.config.getDefaultHeader()
-    }).subscribe(
-      (response: any) => {
-        if (response.status !== 200) {
-          catchError(this.config.handleErrors);
-        }
-        return response.result;
-      },
-      error => {
-        console.log('ERR from getStationById: ' + error);
-      }
+    return this.http.get(this.config.url + `station/${id}`).pipe(
+      map(resp => {
+        return resp;
+      }), catchError(this.config.handleErrors)
     );
   }
 
