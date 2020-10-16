@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { OlMapComponent } from './ol-map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
@@ -11,7 +12,8 @@ import { OlMapComponent } from './ol-map.component';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    LeafletModule
   ],
   declarations: [OlMapComponent],
   exports: [OlMapComponent]

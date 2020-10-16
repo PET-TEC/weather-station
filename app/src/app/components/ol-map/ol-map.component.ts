@@ -1,78 +1,57 @@
-import { Component, OnInit, AfterViewInit, ElementRef, Input } from '@angular/core';
-
-import 'ol/ol.css';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import VectorLayer from 'ol/layer/Vector';
-import XYZ from 'ol/source/XYZ';
-import { OSM } from 'ol/source';
-import * as Proj from 'ol/proj';
-import {
-  defaults as defaultControls,
-  Control
-} from 'ol/control';
-import { LoadingController } from '@ionic/angular';
-
-export const DEFAULT_HEIGHT = '500px';
-export const DEFAULT_WIDTH = '500px';
+import {Component, Input, OnInit} from '@angular/core';
+import {latLng, MapOptions, tileLayer, Map, Marker, icon} from 'leaflet';
 
 @Component({
   selector: 'app-ol-map',
   templateUrl: './ol-map.component.html',
   styleUrls: ['./ol-map.component.scss'],
 })
-export class OlMapComponent implements OnInit, AfterViewInit {
+export class OlMapComponent implements OnInit {
 
   @Input() lat: number;
   @Input() lon: number;
-  @Input() zoom: number;
-  @Input() width: string | number = DEFAULT_WIDTH;
-  @Input() height: string | number = DEFAULT_HEIGHT;
 
-  public map: Map;
+  map: Map;
+  mapOptions: MapOptions;
 
-  private mapElement: HTMLElement;
-  constructor(
-    private elementRef: ElementRef) { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this.mapElement = this.elementRef.nativeElement.querySelector('#map');
-    this.setSize();
+    this.initializeMapOptions();
   }
-  async ngAfterViewInit() {
-    this.map = await new Map({
-      target: 'map',
+
+  onMapReady(map: Map) {
+    this.map = map;
+    this.addSampleMarker();
+  }
+
+  private initializeMapOptions() {
+    console.log('debug: lat = ', this.lat);
+    console.log('debug: lon = ', this.lon);
+    this.mapOptions = {
+      center: latLng(this.lat, this.lon),
+      zoom: 12,
       layers: [
-        new TileLayer({
-          source: new XYZ({
-            url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        tileLayer(
+          'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          {
+            maxZoom: 18,
+            attribution: 'Map data © OpenStreetMap contributors'
           })
-        })
       ],
-      view: new View({
-        center: Proj.fromLonLat([this.lon, this.lat]),
-        zoom: this.zoom
-      }),
-      controls: defaultControls().extend([]),
-    });
+    };
   }
 
-  private setSize(): void {
-    if (this.mapElement) {
-      const styles = this.mapElement.style;
-      styles.height = coerceCssPixelValue(this.height) || DEFAULT_HEIGHT;
-      styles.width = coerceCssPixelValue(this.width) || DEFAULT_WIDTH;
-    }
+  private addSampleMarker() {
+    const marker = new Marker([51.51, 0])
+      .setIcon(
+        icon({
+          iconSize: [25, 41],
+          iconAnchor: [13, 41],
+          iconUrl: 'assets/marker-icon.png'
+        }));
+    marker.addTo(this.map);
   }
+
 }
-
-const cssUnitsPattern = /([A-Za-z%]+)$/;
-function coerceCssPixelValue(value: any): string {
-  if (value == null) {
-    return '';
-  }
-  return cssUnitsPattern.test(value) ? value : `${value}px`;
-}
-
-

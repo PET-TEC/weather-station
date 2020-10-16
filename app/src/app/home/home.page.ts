@@ -13,6 +13,7 @@ export class HomePage implements AfterViewInit{
   userLon: number;
   stringLat: string;
   stringLon: string;
+  showMap = false;
 
   constructor(
     public alertController: AlertController,
@@ -30,6 +31,10 @@ export class HomePage implements AfterViewInit{
       }).catch(error => {
         console.log('ERR getting user geolocation', error);
       });
+    setTimeout(() => {
+      this.showMap = true;
+    }, 1000);
+    
   }
 
   async viewAlert() {

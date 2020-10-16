@@ -17,6 +17,7 @@ export class DetailsPage implements AfterViewInit {
   stationId: number;
   updateDate: string;
   createDate: string;
+  showMap = false;
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
@@ -33,6 +34,9 @@ export class DetailsPage implements AfterViewInit {
     this.stationId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.getDataById(this.stationId);
     this.getStationById(this.stationId);
+    setTimeout(() => {
+      this.showMap = true;
+    }, 1000);
   }
 
   getDataById(id) {
