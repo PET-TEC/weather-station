@@ -44,7 +44,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-button [routerLink]="['../', 'details', '1']" fill="outline" slot="end">Ver dados do dispositivo mais próximo</ion-button>
+        <ion-button [routerLink]="['../', 'details', nearestStationId]" fill="outline" slot="end">Ver dados do dispositivo mais próximo</ion-button>
       </ion-item>
     </ion-card-content>
 
@@ -78,11 +78,11 @@
         <ion-input placeholder="Pesquisar" class="border-box"></ion-input>
         <ion-icon (click)="search()" slot="end" name="search-outline"></ion-icon>
       </ion-item>
-      <ion-item *ngIf="showMap" >
+      <!--<ion-item *ngIf="showMap" >
         <div styles="margin: 0 auto; width: auto;" >
           <app-ol-map lat="{{userLat}}" lon="{{userLon}}" ></app-ol-map>
         </div>
-      </ion-item>
+      </ion-item>-->
       <!--<ion-item>
         <ion-item>
           <ion-label>Mostrar Dispositivos</ion-label>

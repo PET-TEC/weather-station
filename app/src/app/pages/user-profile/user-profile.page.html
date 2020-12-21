@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot='start'>
-      <ion-button [routerLink]="['../', 'home']">
+      <ion-button [routerLink]="['../../', 'home']">
         <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -10,5 +10,22 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input [(ngModel)]="user.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">NickName</ion-label>
+    <ion-input [(ngModel)]="user.nickname"></ion-input>
+  </ion-item>
+  <ion-item color='secondary' style='padding-left: 30px; padding-right: 30px; padding-top: 7px;' (click)="update()">
+    <ion-label style='text-align: center;'>Atualizar Perfil</ion-label>
+    <ion-icon horizontal="end" name="flash-outline"></ion-icon> 
+    <ion-ripple-effect></ion-ripple-effect> 
+  </ion-item>
+  <ion-item color='tertiary' style='padding-left: 30px; padding-right: 30px; padding-top: 7px;'>
+    <ion-label style='text-align: center;'>Alterar Senha</ion-label>
+    <ion-icon horizontal="end" name="flash-outline"></ion-icon> 
+    <ion-ripple-effect></ion-ripple-effect> 
+  </ion-item>
 </ion-content>

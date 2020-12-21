@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
 export class Config {
 
     err: any = {};
-    url = 'http://192.168.1.109:3004/';
+    url = 'http://192.168.1.11:3004/';
     userId: number;
 
 

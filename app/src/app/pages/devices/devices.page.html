@@ -10,5 +10,33 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-card *ngFor="let station of devices" (click)="navigateToDevice(station)">
+      <ion-card-header>
+        <ion-card-title>{{station.name}}</ion-card-title>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                Lat = {{station.lat}}
+              </ion-col>
+              <ion-col size="6">
+                Lon = {{station.lon}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Atualizado em:
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                {{station.updatedAt}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card-header>
+    </ion-card> 
+  </ion-list>
 </ion-content>

@@ -16,24 +16,17 @@ export class StationService {
   getStationById(id) {
     return this.http.get(this.config.url + `station/${id}`).pipe(
       map(resp => {
+        console.log('debug: getStationById: resp = ', resp);
         return resp;
       }), catchError(this.config.handleErrors)
     );
   }
 
   getStationByUserId(userId) {
-    return this.http.get(this.config.url + `station/user/${userId}`, {
-      headers: this.config.getDefaultHeader()
-    }).subscribe(
-      (response: any) => {
-        if (response.status !== 200) {
-          catchError(this.config.handleErrors);
-        }
-        return response.result;
-      },
-      error => {
-        console.log('ERR from getStationByUserId: ' + error);
-      }
+    return this.http.get(this.config.url + `station/user/${userId}`).pipe(
+      map(resp => {
+        return resp;
+      }), catchError(this.config.handleErrors)
     );
   }
 
@@ -50,6 +43,14 @@ export class StationService {
       error => {
         console.log('ERR from getStation: ' + error);
       }
+    );
+  }
+
+  getNearestStation(lat: number, lon: number) {
+    return this.http.get(this.config.url + `station/${lat}/${lon}`).pipe(
+      map(resp => {
+        return resp;
+      }), catchError(this.config.handleErrors)
     );
   }
 

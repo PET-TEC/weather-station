@@ -1,7 +1,7 @@
 import { Station } from './station';
 
 export class User {
-    id: string;
+    id: number;
     name: string;
     nickname: string;
     password: string;

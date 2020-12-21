@@ -12,11 +12,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'user-profile',
+    path: 'user-profile/:id',
     loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
   {
-    path: 'devices',
+    path: 'devices/:id',
     loadChildren: () => import('./pages/devices/devices.module').then( m => m.DevicesPageModule)
   },
   {
@@ -55,6 +55,11 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'new-device',
+    loadChildren: () => import('./pages/new-device/new-device.module').then( m => m.NewDevicePageModule)
+  },
+
 ];
 
 @NgModule({
